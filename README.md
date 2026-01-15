@@ -28,11 +28,17 @@ This project provides AI-assisted workflow creation for self-hosted n8n instance
 | Auto-fix | Automatically resolve common configuration issues |
 | Version Control | Workflow history and rollback support |
 
-## Quick Start
+## Setup
 
-1. Ensure your n8n instance is running
-2. Configure MCP server connection
-3. Start building with AI assistance:
+1. Ensure your n8n instance is running with API access enabled
+2. Copy the MCP configuration template:
+
+   ```bash
+   cp .mcp.json.example .mcp.json
+   ```
+
+3. Edit `.mcp.json` with your n8n instance URL and API key
+4. Start building with AI assistance:
    - Describe your automation needs
    - AI searches for relevant nodes/templates
    - Validates and creates the workflow

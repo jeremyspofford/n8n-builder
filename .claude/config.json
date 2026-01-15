@@ -1,0 +1,12 @@
+{
+  "enabledPlugins": {
+    "n8n-node-configuration": true,
+    "n8n-code-javascript": true,
+    "n8n-code-python": true,
+    "n8n-expression-syntax": true,
+    "n8n-validation-expert": true,
+    "n8n-workflow-patterns": true,
+    "n8n-mcp-tools-expert": true
+  },
+  "customInstructions": "file://./CLAUDE.md"
+}

@@ -1,0 +1,101 @@
+---
+description: High-level overview of the FT Quoting project architecture and structure
+globs: 
+alwaysApply: true
+---
+
+# FT Quoting Project Overview
+
+**FT Quoting** (Alert Venture Flying Tools Quoting) is a modern serverless web application for property quoting and 3D visualization, built on AWS using a monorepo structure with npm workspaces.
+
+**Repository**: `ft-quoting`  
+**Owner**: Alert Venture Foundry  
+**Main Branches**: `dev` → `stage` → `prod`
+
+## IDE Configuration Standards
+
+This repository uses modern IDE standards for AI coding assistants:
+
+- **Cursor IDE**: Uses `.cursor/rules/*.mdc` files (NOT the legacy `.cursorrules` single file)
+- **Source of Truth**: This `.cursor/rules/` directory contains detailed coding patterns
+- **Cross-IDE Compatibility**: `AGENTS.md`, `CLAUDE.md`, and `gemini.md` all reference `.cursor/rules/`
+
+## 🚀 Quick Start (Local Development)
+
+```bash
+# Install ALL dependencies (npm workspaces hoists to root)
+npm install
+
+# Start everything (Frontend + Backend + LocalStack)
+npm run local
+```
+
+This launches:
+
+- **Frontend:** `http://localhost:4173`
+- **Backend API:** `http://localhost:3000`
+- **LocalStack:** Dockerized AWS services (S3, DynamoDB)
+
+## 📂 Project Structure
+
+This project uses **NPM Workspaces**.
+
+```text
+ft-quoting/
+├── apps/
+│   ├── quoting-studio/     # Frontend: React 19 + Vite + TypeScript + Babylon.js
+│   ├── server/             # Backend: Node.js 20 + Express + TypeScript + AWS SAM
+│   ├── shared/             # Shared TypeScript types between FE/BE
+│   └── streetview-screenshot-lambda/  # Street View capture Lambda
+├── infrastructure/         # IaC: AWS CDK v2 + TypeScript
+├── .cursor/rules/          # Cursor AI development rules (source of truth)
+└── scripts/                # Utility scripts for dev and ops
+```
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+- React 19 with TypeScript
+- Vite build tool
+- Material-UI (MUI)
+- Babylon.js for 3D rendering
+- React Query for data fetching
+- Zustand for state management
+
+### Backend
+
+- Node.js 20 runtime
+- Express.js framework
+- AWS Lambda (serverless)
+- TypeScript
+- Vitest for testing
+- SAM CLI for local development
+
+### Infrastructure
+
+- AWS CDK v2 (TypeScript)
+- AWS Lambda for compute
+- API Gateway REST API
+- DynamoDB (on-demand) for data
+- S3 for file storage
+- CloudFront for CDN
+- Route53 for DNS
+- Cognito for authentication
+- LocalStack for local development
+
+## 📝 Key Development Conventions
+
+- **NPM Workspaces**: NEVER run `npm install` in subdirectories. All dependencies installed from root.
+- **Infrastructure-as-Code**: All infrastructure changes via CDK in `infrastructure/`
+- **LocalStack**: Local development relies on LocalStack for AWS service emulation
+- **Linting & Formatting**: ESLint + Prettier. Run `npm run format` before committing.
+- **Pre-push Hooks**: Lefthook runs `npm run typecheck` before `git push`
+- **Naming**: Follow conventions in `infrastructure/standards.md` (e.g., `ft-quoting-{env}-{service}`)
+
+## 📚 Key Documentation
+
+- **Root**: `README.md`, `LOCAL-DEV-GUIDE.md`, `AGENTS.md`, `CLAUDE.md`, `gemini.md`
+- **Infrastructure**: `infrastructure/README.md`, `infrastructure/patterns.md`
+- **Frontend**: `apps/quoting-studio/README.md`
+- **Backend**: `apps/server/README.md`

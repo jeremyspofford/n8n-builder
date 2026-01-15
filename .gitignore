@@ -1,3 +1,10 @@
+# AI Rules
+.agent/cache
+.agent/checkpoints
+.agent/memory
+.agent/metrics
+.agent/scratchpad.md
+
 # MCP configuration (contains API keys)
 .mcp.json
 
